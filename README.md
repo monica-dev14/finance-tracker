@@ -13,4 +13,4 @@ Minimalist engine to monitor cashflow.
 * **Logic:** Vanilla JS (Pure performance)
 
 ## 🔗 Live Demo
-[View My Project Live 🚀](https://lumiere-couture-ui.vercel.app/)
+[View My Project Live 🚀](https://finance-tracker-26s1.vercel.app/)
