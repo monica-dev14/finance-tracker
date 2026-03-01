@@ -25,7 +25,7 @@ function App() {
   const [isFlying, setIsFlying] = useState(false);
   const [currentQuote, setCurrentQuote] = useState('');
 
-  // Confetti trigger when reaching ₹1000 milestone
+  // Confetti trigger reached 1000
   useEffect(() => {
     if (activeGoalIndex !== null && goals[activeGoalIndex]?.saved >= 1000) {
       confetti({
@@ -59,31 +59,28 @@ function App() {
     if (!savingsInput || savingsInput <= 0) return;
     setIsFlying(true);
     
-    // Pick a random English quote
+    
     const randomQuote = motivationQuotes[Math.floor(Math.random() * motivationQuotes.length)];
     
     setTimeout(() => {
       const updatedGoals = [...goals];
       updatedGoals[activeGoalIndex].saved += Number(savingsInput);
       setGoals(updatedGoals);
-      setCurrentQuote(randomQuote); // Show quote after saving
+      setCurrentQuote(randomQuote) ;
       setSavingsInput('');
       setIsFlying(false);
     }, 800);
   };
 
   const deleteGoal = (indexToDelete) => {
-  // Confirm pannitu delete panna safe
   if (window.confirm("Are you sure you want to delete this goal?")) {
     const updatedGoals = goals.filter((_, index) => index !== indexToDelete);
     setGoals(updatedGoals);
 
     if (updatedGoals.length === 0) {
-      // Goal-e illana fresh entry page-ku kootitu pogum
       setPage(2);
       setActiveGoalIndex(null);
     } else {
-      // Oru goal delete aana, automatic-ah mudhal goal-ku switch aagum
       setActiveGoalIndex(0);
     }
   }
@@ -95,7 +92,6 @@ function App() {
     <div className="app-wrapper">
       <AnimatePresence mode="wait">
         {page === 2 ? (
-          /* PAGE: SET GOAL ENTRY */
           <motion.div key="setGoal" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} className="container">
             <h1 className="main-title">💰 Finance Tracker 🎯</h1>
             <h2 className="sub-title">{goals.length > 0 ? "Add Another Goal" : "Set Your New Goal"}</h2>
@@ -111,7 +107,6 @@ function App() {
             )}
           </motion.div>
         ) : (
-          /* PAGE: TRACKER PAGE */
           <motion.div key="tracker" initial={{ opacity: 0, x: 50 }} animate={{ opacity: 1, x: 0 }} className="container">
             <h1 className="main-title">💰 Finance Tracker 🎯</h1>
 
@@ -128,7 +123,6 @@ function App() {
               ))}
             </div>
 
-            {/* Quote appears only after saving amount */}
             <AnimatePresence>
               {currentQuote && (
                 <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} className="quote-box">
@@ -158,7 +152,7 @@ function App() {
             <button className="btn-add" onClick={handleAddSavings}>Add Savings +</button>
             <button className="btn-delete" onClick={() => deleteGoal(activeGoalIndex)}>🗑️ Delete Current Goal</button>
             
-            {/* PUDHU GOAL ADD PANNA INTHA BUTTON */}
+            {/* set a new goal*/}
             <button className="btn-new-outline" onClick={() => setPage(2)}>
               ➕ Add Another New Goal
             </button>
