@@ -13,11 +13,11 @@ const motivationQuotes = [
 ];
 
 function App() {
-  const [goals, setGoals] = useState([]); // Multiple goals store panna
+  const [goals, setGoals] = useState([]); 
   const [activeGoalIndex, setActiveGoalIndex] = useState(null);
-  const [page, setPage] = useState(2); // 2: Set Goal, 1: Tracker
+  const [page, setPage] = useState(2); 
   
-  // Form Inputs
+  
   const [goalName, setGoalName] = useState('');
   const [targetAmount, setTargetAmount] = useState('');
   const [savingsInput, setSavingsInput] = useState('');
@@ -49,7 +49,7 @@ function App() {
       setActiveGoalIndex(updatedGoals.length - 1); // Switch to the new goal
       setGoalName('');
       setTargetAmount('');
-      setPage(1); // Go to tracker
+      setPage(1); 
     } else {
       alert("Please enter Goal and Target Amount!");
     }
